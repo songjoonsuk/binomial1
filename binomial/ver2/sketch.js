@@ -80,7 +80,7 @@ let xt,yt;
 let id = 0;
 let repeat = 0;
 function draw() {
-  if (mouseIsPressed) keyflag = 1;
+  
   
   
   if( keyflag ) {
@@ -104,7 +104,9 @@ function draw() {
         repeat = 0;
         id = id + 1;
         if( id == objs.length ) {
-          id = 0;keyflag = 0;
+          id = 0;
+          keyflag -= 1;
+          
           for( let i =0 ; i< StoryNo;i++) {
             pre_count[i] = objs[i+arr[StoryNo-1]].count;
           }
@@ -128,6 +130,7 @@ function defaultScreen() {
    
   display_count();
   draw_boundary();
+  rsved_ball();
 
 
 }
@@ -142,6 +145,19 @@ function msg() {
   textAlign(RIGHT);
   fill( 255 );
   text('[마우스 클릭] 또는 [키보드]    ', width,  (upper_margin*3/4) );
+
+}
+
+function rsved_ball() {
+  
+  textSize(35);
+  
+  textAlign(LEFT);
+  fill( 255 );
+  text('예약된 공 :      '  , 60   , height/3 );
+  text( keyflag  , 60 + 170     ,  height/3 );
+  
+  textSize(fontsize);
 
 }
 
@@ -203,29 +219,17 @@ function display_count() {
 //    text( objs[i+arr[StoryNo-1]].count , Xref+i*(diameter+Xmargin) , Yref + 50 );
   }
 }
-
+function mousePressed() {
+  keyflag += 1;
+}
 function keyPressed() {
   
   if (key >= 'a' && key <= 'z') {
-    keyflag = 1;
+    keyflag += 1;
   }
 }
 
-function display_ball( i ) {
 
-   
-  if( objs[i].color == cir_intense ) {	
-
-    console.log(i);
-
-    fill ( cir_intense ) ;
-    ellipse(objs[i].Xcoor, objs[i].Ycoor, objs[i].diameter );
-
-    ret = 1;   
-  }
-  else ret = 0;
-  
-}
 
 function draw_hurdle() {
   for (let i = 0; i < (objs.length - StoryNo) ; i++) {

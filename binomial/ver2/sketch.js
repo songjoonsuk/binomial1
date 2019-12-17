@@ -24,6 +24,7 @@ let ret = 1;
 let left_x1,left_y1,left_x2,left_y2;
 let right_x1,right_y1,right_x2,right_y2;
 
+let s1;
 let img;
 let swing = 5;
 let rand1;
@@ -35,6 +36,7 @@ function preload() {
    //  font = loadFont('../source-sans-pro/SourceSansPro-Regular.otf');
    hanfont = loadFont('font/Cafe24Dangdanghae/Cafe24Dangdanghae.ttf' );
    img = loadImage('image/logo1.png'); // Load the image
+   s1 = loadSound('sound/s1.mp3');
 }
 
 
@@ -101,6 +103,8 @@ function draw() {
     
       repeat = repeat + 1 ;
       if( repeat == 1 ) {
+       
+
         repeat = 0;
         id = id + 1;
         if( id == objs.length ) {
@@ -111,6 +115,8 @@ function draw() {
             pre_count[i] = objs[i+arr[StoryNo-1]].count;
           }
           defaultScreen();
+          s1.stop();
+          s1.play();
         }
       }
 

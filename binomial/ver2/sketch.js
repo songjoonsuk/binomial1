@@ -73,7 +73,7 @@ function setup() {
   }
   
   defaultScreen();
-  msg();
+//  msg();
 
 }
 
